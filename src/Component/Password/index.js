@@ -1,27 +1,28 @@
 import './index.css'
 
 const Password = props => {
-  const {data, deleteItem} = props
-  const {website, username, password, isWrong} = data
+  const {data, deleteList} = props
+  const {web, user, pass, isFavorite, id} = data
 
-  const onDeletebtn = id => {
-    deleteItem(id)
+  const onDeletebtn = () => {
+    deleteList(id)
   }
 
-  const ftxt = website.slice(0, 1)
+  const ftxt = web.slice(0, 1)
 
   return (
     <div>
-      <li>
+      <li className="">
         <p>{ftxt}</p>
-        <p>{username}</p>
+        <p>{user}</p>
 
-        <p>{password}</p>
+        <p>{pass}</p>
         <p>
-          {!isWrong && (
+          {!isFavorite && (
             <img
               src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
               alt="stars"
+              className="img1"
             />
           )}
         </p>
@@ -29,6 +30,7 @@ const Password = props => {
           <img
             src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png "
             alt="delete"
+            className="img1"
           />
         </button>
       </li>
