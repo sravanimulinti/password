@@ -23,7 +23,7 @@ class PasswordManager extends Component {
       web: website,
       user: username,
       pass: password,
-      isFavorite: isWrong,
+      ps: isWrong,
     }
 
     this.setState(prevState => ({
@@ -62,8 +62,18 @@ class PasswordManager extends Component {
   }
 
   render() {
-    // eslint-disable-next-line
-    const {isRight, allData, website, username, password, search} = this.state
+    const {
+      // eslint-disable-next-line
+      isWrong,
+      allData,
+      // eslint-disable-next-line
+      isRight,
+      website,
+      username,
+      password,
+      // eslint-disable-next-line
+      search,
+    } = this.state
 
     return (
       <div className="bg">
@@ -82,6 +92,7 @@ class PasswordManager extends Component {
                   className="img1"
                   alt="website"
                 />
+
                 <input
                   type="text"
                   value={website}
@@ -96,6 +107,7 @@ class PasswordManager extends Component {
                   className="img1"
                   alt="username"
                 />
+
                 <input
                   type="text"
                   value={username}
@@ -108,8 +120,9 @@ class PasswordManager extends Component {
                 <img
                   src="https://assets.ccbp.in/frontend/react-js/password-manager-password-img.png"
                   className="img1"
-                  alt=""
+                  alt="password"
                 />
+
                 <input
                   type="password"
                   value={password}
@@ -133,11 +146,7 @@ class PasswordManager extends Component {
         <div className="bg3">
           <div className="box">
             <h1 className="heading">Your Passwords</h1>
-            <img
-              src="https://assets.ccbp.in/frontend/react-js/password-manager-password-img.png"
-              className="img4"
-              alt="password"
-            />
+            <p className="">{allData.length}</p>
             <img
               src="https://assets.ccbp.in/frontend/react-js/password-manager-search-img.png"
               className="img5"
@@ -152,21 +161,22 @@ class PasswordManager extends Component {
           </div>
           <hr className="line" />
           <div className="box1">
-            <input type="checkbox" className="check" />
+            <input type="checkbox" className="check" id="password" />
             <label className="para" htmlFor="password">
               Show Password
             </label>
           </div>
-          <ul className="un">
-            {allData.map(eachObj => (
-              <Password
-                key={eachObj.id}
-                data={eachObj}
-                deleteList={this.deleteItem}
-              />
-            ))}
-          </ul>
-
+          <div>
+            <ul className="un">
+              {allData.map(eachObj => (
+                <Password
+                  key={eachObj.id}
+                  data={eachObj}
+                  deleteList={this.deleteItem}
+                />
+              ))}
+            </ul>
+          </div>
           <div>
             {!isRight && (
               <div>
@@ -175,7 +185,7 @@ class PasswordManager extends Component {
                   alt="no passwords"
                   className="image"
                 />
-                <p className="heading">No Passwords</p>
+                <p>No Passwords</p>
               </div>
             )}
           </div>

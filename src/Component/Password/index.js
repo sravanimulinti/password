@@ -1,41 +1,42 @@
+import {Component} from 'react'
 import './index.css'
 
-const Password = props => {
-  const {data, deleteList} = props
-  const {web, user, pass, isFavorite, id} = data
+class Password extends Component {
+  render() {
+    const {data, deleteList} = this.props
+    const {web, user, id, isRight} = data
 
-  const onDeletebtn = () => {
-    deleteList(id)
-  }
+    const onDeletebtn = () => {
+      deleteList(id)
+    }
 
-  const ftxt = web.slice(0, 1)
+    const ftxt = web.slice(0, 1).upercase()
 
-  return (
-    <div>
-      <li className="">
-        <p>{ftxt}</p>
-        <p>{user}</p>
+    return (
+      <div>
+        <li>
+          <p>{web}</p>
+          <p>{ftxt}</p>
 
-        <p>{pass}</p>
-        <p>
-          {!isFavorite && (
+          <p>{user}</p>
+          <p>
+            {!isRight && (
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
+                alt="stars"
+              />
+            )}
+          </p>
+          <button type="button" onClick={onDeletebtn} data-testid="delete">
             <img
-              src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
-              alt="stars"
-              className="img1"
+              src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png "
+              alt="delete"
             />
-          )}
-        </p>
-        <button type="button" onClick={onDeletebtn} data-testid="delete">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png "
-            alt="delete"
-            className="img1"
-          />
-        </button>
-      </li>
-    </div>
-  )
+          </button>
+        </li>
+      </div>
+    )
+  }
 }
 
 export default Password
